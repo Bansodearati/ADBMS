@@ -1,0 +1,131 @@
+Question : 1 Consider the table Worker and fetch the no. of workers for each department in the descending order.
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKERID | FIRSTNAME | LASTNAME | SALARY | JOININGDATE | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+| 1 | Monika | Arora | 100000 | 2014-02-20 09:00:00 | HR |
+| 2 | Niharika | Verma | 80000 | 2014-06-11 09:00:00 | Admin |
+| 3 | Vishal | Singhal | 300000 | 2014-02-20 09:00:00 | HR |
+| 4 | Amitabh | Singh | 500000 | 2014-02-20 09:00:00 | Admin |
+| 5 | Vivek | Bhati | 500000 | 2014-06-11 09:00:00 | Admin |
+| 6 | Vipul | Diwan | 200000 | 2014-06-11 09:00:00 | Account |
+| 7 | Satish | Kumar | 75000 | 2014-01-20 09:00:00 | Account |
+| 8 | Geetika | Chauhan | 90000 | 2014-04-11 09:00:00 | Admin |
++-----------+------------+-----------+--------+---------------------+------------+
+Expected Output:
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKERID | FIRSTNAME | LASTNAME | SALARY | JOININGDATE | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+| 7 | Satish | Kumar | 75000 | 2014-01-20 09:00:00 | Account |
++-----------+------------+-----------+--------+---------------------+------------+
+
+Answer :
+
+select department, count(Worker_id) as num from Worker
+group by department
+order by num desc;
+
+Output of this program 
++------------+-----+
+| department | num |
++------------+-----+
+|      Admin |   4 |
+|         HR |   2 |
+|    Account |   2 |
++------------+-----+
+
+
+
+
+Question 2:
+Consider the table Worker and display the records of Workers with the first name as “Vipul” and “Satish” from Worker table.
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKERID | FIRSTNAME | LASTNAME | SALARY | JOININGDATE | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+| 1 | Monika | Arora | 100000 | 2014-02-20 09:00:00 | HR |
+| 2 | Niharika | Verma | 80000 | 2014-06-11 09:00:00 | Admin |
+| 3 | Vishal | Singhal | 300000 | 2014-02-20 09:00:00 | HR |
+| 4 | Amitabh | Singh | 500000 | 2014-02-20 09:00:00 | Admin |
+| 5 | Vivek | Bhati | 500000 | 2014-06-11 09:00:00 | Admin |
+| 6 | Vipul | Diwan | 200000 | 2014-06-11 09:00:00 | Account |
+| 7 | Satish | Kumar | 75000 | 2014-01-20 09:00:00 | Account |
+| 8 | Geetika | Chauhan | 90000 | 2014-04-11 09:00:00 | Admin |
++-----------+------------+-----------+--------+---------------------+------------+
+
+
+Expected Output:
++--------------------------------------------------------------------------------+
+| WORKERID | FIRSTNAME | LASTNAME | SALARY | JOININGDATE | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+| 6 | Vipul | Diwan | 200000 | 2014-06-11 09:00:00 | Account |
+| 7 | Satish | Kumar | 75000 | 2014-01-20 09:00:00 | Account |
++-----------+------------+-----------+--------+---------------------+------------+
+
+Answer
+
+SELECT * FROM Worker 
+WHERE first_name IN ("Vipul", "Satish");
+
+Output of this program 
+
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY |     JOINING_DATE    | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         6 |      Vipul |     Diwan | 200000 | 2014-06-11 09:00:00 |    Account |
+|         7 |     Satish |     Kumar |  75000 | 2014-01-20 09:00:00 |    Account |
++-----------+------------+-----------+--------+---------------------+------------+
+
+
+
+Question :3
+
+Consider the table Worker and print details of the Workers whose FIRST_NAME ends with ‘h’ and contains six alphabets.
+Expected Output:
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKERID | FIRSTNAME | LASTNAME | SALARY | JOININGDATE | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+| 7 | Satish | Kumar | 75000 | 2014-01-20 09:00:00 | Account |
++-----------+------------+-----------+--------+---------------------+------------+
+
+Answer 
+SELECT * FROM worker WHERE first_name LIKE "_____h";
+
+Output of this progam 
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKERID | FIRSTNAME | LASTNAME | SALARY | JOININGDATE | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+| 7 | Satish | Kumar | 75000 | 2014-01-20 09:00:00 | Account |
++-----------+------------+-----------+--------+---------------------+------------+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+Question 4
+Write a Pl/SQL program to check number is even or odd.Consider the number 23.
+
+DECLARE 
+num NUMBER := 23;
+ reminder NUMBER;
+ BEGIN reminder := MOD(num, 2);
+ IF reminder = 0 THEN
+ dbms_output.Put_line('number is Even');
+ ELSE
+ dbms_output.Put_line('number is Odd');
+ END IF; 
+END;
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+Question 5
+Write a Pl/SQL program to calculate factorial of 5.
+Expected output
+120
+
+DECLARE
+	N NUMBER:=5;
+	FACTORIAL NUMBER:=1;
+	I NUMBER;
+BEGIN
+ 
+  FOR I in 1..N
+  LOOP 
+	FACTORIAL:=FACTORIAL*I;
+  END LOOP;	
+  DBMS_OUTPUT.PUT_LINE('FACTORIAL OF '||N|| ' IS '||FACTORIAL);
+END;
